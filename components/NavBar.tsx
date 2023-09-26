@@ -3,6 +3,7 @@ import { FC, useState } from "react";
 import { logo, hamb, close } from "@Images/index";
 import Image from "next/image";
 import Link from "next/link";
+import { motion as m, AnimatePresence } from "framer-motion";
 interface NavBarProps {}
 
 const NavBar: FC<NavBarProps> = ({}) => {
@@ -17,6 +18,22 @@ const NavBar: FC<NavBarProps> = ({}) => {
   function handleToggle() {
     setToggle((prev) => !prev);
   }
+
+  const containerVars = {
+    initial: {
+      transition: {
+        staggerChildren: 0.09,
+        staggerDirection: -1,
+      },
+    },
+    open: {
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.09,
+        staggerDirection: 1,
+      },
+    },
+  };
   return (
     <>
       <div className="sticky top-0 z-10 overflow-hidden">
@@ -56,19 +73,32 @@ const NavBar: FC<NavBarProps> = ({}) => {
       </div>
 
       <div className="relative ">
-        {toggle && (
-          <div className="absolute z-10 flex flex-col lg:hidden  items-center w-[90%] py-4 mx-4 my-3 rounded-md bg-slate-100">
-            {toggle &&
-              list.map((item) => (
-                <Link
-                  className="p-2 m-1 font-medium tracking-wide "
-                  key={item.id}
-                  href="#">
-                  {item.id}
-                </Link>
-              ))}
-          </div>
-        )}
+        <AnimatePresence>
+          {toggle && (
+            <m.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25 }}
+              className="absolute bg-white h-full top-2 z-10 flex flex-col items-center mx-4 w-[90%] py-4 rounded-md lg:hidden ">
+              {toggle &&
+                list.map((item) => (
+                  <m.div
+                    key={item.id}
+                    variants={containerVars}
+                    initial="initial"
+                    animate="open"
+                    className="my-4">
+                    <Link
+                      className="p-2 py-4 m-1 my-5 font-medium tracking-wide "
+                      href="#">
+                      {item.id}
+                    </Link>
+                  </m.div>
+                ))}
+            </m.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
