@@ -73,7 +73,7 @@ const Footer: FC<FooterProps> = ({}) => {
             />
           </div>
         </div>
-        <div className="py-2 leading-loose lg:grid lg:grid-cols-2 font-extralight opacity-90">
+        <div className="flex flex-col py-2 leading-loose lg:grid lg:grid-cols-2 font-extralight opacity-90">
           {list.map((i) => (
             <Link
               key={i.id}
