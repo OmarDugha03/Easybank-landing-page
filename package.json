@@ -35,6 +35,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.8.5",
     "@svgr/webpack": "^8.1.0",
     "babel-plugin-inline-react-svg": "^2.0.2",
     "file-loader": "^6.2.0"
