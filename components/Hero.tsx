@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { introDesk, introMob, hero } from "@Images/index";
-import Image from "next/image";
+import { FC } from "react"
+import { introDesk, introMob, hero } from "@Images/index"
+import Image from "next/image"
 interface HeroProps {}
 
 const Hero: FC<HeroProps> = ({}) => {
@@ -15,7 +15,7 @@ const Hero: FC<HeroProps> = ({}) => {
         <Image
           src={introMob}
           alt="vector"
-          className="absolute -z-10 ls:hidden"
+          className="absolute w-full -z-10 ls:hidden"
         />
         <Image src={hero} alt="hero" className="z-10 py-7" />
       </div>
@@ -33,7 +33,7 @@ const Hero: FC<HeroProps> = ({}) => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero
